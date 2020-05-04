@@ -66,12 +66,14 @@ main.addEventListener('click', (event) => {
     
     if (event.target === startButton && runTimer === false)   {
 
-            startInterval();
+        startInterval();
     }
 
     if (event.target === stopButton)    {
+        if (runTimer === true)  {
         clearInterval(int);
         runTimer = false;
+        }
     }
 
     if (event.target === resetButton)   {
