@@ -18,6 +18,8 @@ const setTimeDiv = document.getElementsByClassName('timesetdiv')[0];
 const timerInfo = document.getElementsByClassName('timer-info')[0];
 const totalTimer = document.getElementsByClassName('time')[0];
 const timerValue = document.querySelector('.timer-value');
+const audio = new Audio('./assets/audio/insight.mp3')
+
 let runTimer = false;
 
 // Set defaults if empty
@@ -58,7 +60,7 @@ main.addEventListener('click', (event) => {
             }
 
         setTimeDiv.style.display = 'none';
-        timerInfo.innerText = `${timerHours.innerText}:${timerMinutes.innerText}:${timerSeconds.innerText}`;
+        timerValue.innerHTML = `Timer has been set to: <span class='timer-info'>${timerHours.innerText}:${timerMinutes.innerText}:${timerSeconds.innerText}</span>`;
     }
 
     
@@ -79,7 +81,8 @@ main.addEventListener('click', (event) => {
         timerMinutes.innerText = '00';
         timerSeconds.innerText = '00';
         setTimeDiv.style.display = 'block';
-
+        timerValue.innerHTML = "Timer has been set to: <span class='timer-info'>00:00:00</span>";
+        timerValue.style.color = 'black';
     }
 });
 
@@ -113,8 +116,8 @@ function startInterval()    {
             
             if (seconds === 0)  {
                 clearInterval(int);
-
-                timerValue.innerText = 'THE TIMER HAS ENDED!';
+                audio.play();
+                timerValue.innerHTML = 'THE TIMER HAS ENDED!';
                 timerValue.style.color = 'green';
             }
         }, 1000);
